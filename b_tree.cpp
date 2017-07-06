@@ -37,6 +37,9 @@ void in_order(node *root){
     cout<<root->data<<" ";
     in_order(root->right);
 }
+void post_order(node *root){
+    
+}
 int main(){
     node *root=NULL;
     root=insert(root,3);

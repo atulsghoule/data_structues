@@ -12,10 +12,7 @@ class linked_list
 public:
     linked_list()
     {
-        root=new node;
-        root->data=0;
-        root->next=NULL;
-        root->prev=NULL;
+        root=NULL:
     }
     void list_insert(int num)
     {
