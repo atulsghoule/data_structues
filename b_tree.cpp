@@ -29,16 +29,24 @@ bool find(node *root,int data){
     else
         return find(root->right,data);
 }
-
-void in_order(node *root){
+void pre_order(node *root){
     if(root==NULL)
-        return ;
-    in_order(root->left);
+        return;
+    pre_order(root->left);
     cout<<root->data<<" ";
+    pre_order(root->right);
+}
+void in_order(node *root){
+    if(!root)
+        return;
+    cout<<root->data<<" ";
+    in_order(root->left);
     in_order(root->right);
 }
 void post_order(node *root){
-    
+    pre_order(root->right);
+    cout<<root->data<<" ";
+    pre_order(root->left);
 }
 int main(){
     node *root=NULL;
@@ -48,6 +56,10 @@ int main(){
     root=insert(root,4);
     root=insert(root,6);
     in_order(root);
+    cout<<endl;
+    post_order(root);
+    cout<<endl;
+    pre_order(root);
     cout<<endl;
     cout<<find(root,6)<<endl;
     return 0;
