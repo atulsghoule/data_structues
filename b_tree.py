@@ -21,60 +21,66 @@ def insert(root,data):
                 root.r_child = node(data)
             else:
                 insert(root.r_child,data)
-                
-## deletion in binary search tree
-'''def delete(self, key):
-    if self.key == key:
-        if self.right and self.left:  
-            [psucc, succ] = self.right._findMin(self)
-            if psucc.left == succ:
-                psucc.left = succ.right
-            else:
-                psucc.right = succ.right
-            succ.left = self.left
-            succ.right = self.right
-            return succ                
-        else:
-            if self.left:
-                return self.left    
-            else:
-                return self.right    
+    return root
+
+
+
+##deletion in binary search tree
+def delete(root,data):
+    if root==None :
+        return root
+    elif data < root.data :
+        root.l_child=delete(root.l_child,data)
+    elif data > root.data :
+        root.r_child=delete(root.r_child,data)
     else:
-        if self.key > key:          
-            if self.left:
-                self.left = self.left.delete(key)
-        else:           
-            if self.right:
-                self.right = self.right.delete(key)
-    return self'''
+        if root.l_child==None and root.r_child==None:
+            root=None
+        elif root.l_child==None :
+            root= root.r_child
+        elif root.r_child==None:
+            root = root.l_child
+        else:
+            temp=findmin(root.r_child)
+            root.data=temp.data
+            root.r_child=delete(root.r_child,temp.data)
+    return root
+        
+##find min in a tree
+def findmin(root):
+    if root==None or root.l_child==None:
+        return root
+    root=root.l_child
+
+
                     
 ## find a node and its level in the tree
 def find(root,data,level=0):
     if root is None:
-        return False,level
+        return [False,level]
     elif root.data==data:
-        return True,level
+        return [True,level]
     elif root.data > data:
         return find(root.l_child,data,level+1)
     else:
         return find(root.r_child,data,level+1)
 
 ##inorder traversal
-def in_order(root,array=list()):
+def pre_order(root,array=list()):
     if not root:
         return 
-    in_order(root.l_child,array)
+    pre_order(root.l_child,array)
     array.append(root.data)
-    in_order(root.r_child,array)
+    pre_order(root.r_child,array)
     return array
 
 ##preorder traversal
-def pre_order(root,array=list()):
+def in_order(root,array=list()):
     if not root:
         return        
     array.append(root.data)
-    pre_order(root.l_child,array)
-    pre_order(root.r_child,array)
+    in_order(root.l_child,array)
+    in_order(root.r_child,array)
     return array
 
 ## finds the max height of the tree
