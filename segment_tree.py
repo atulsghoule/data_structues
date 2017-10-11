@@ -4,9 +4,16 @@
 from math import ceil,log
 array=[2,3,-1,4]
 size=(1<<int(ceil(log(len(array),2))))*2-1
+
+##initialization of tree with literal that wont count
 tree=[99999999]*size
+##lazy nodes of the tree
 lazy=[0]*size
+
 ##construction of the segment tree
+    ##low -> 0 (starting index array)
+    ##high -> size-1 (last indes of the array)
+    ##pos -> 0 (initial starting insed)
 def construct(low,high,pos):
     if(low==high):
         ## the base node
@@ -21,6 +28,11 @@ def construct(low,high,pos):
 
 
 ##query on a segment tree
+    ##qlow -> 'l' (starting query index)
+    ##qhigh -> 'r' (endinng query index)
+    ##low -> 0 (starting index array)
+    ##high -> size-1 (last indes of the array)
+    ##pos -> 0 (initial starting insed)
 def query(qlow,qhigh,low,high,pos):
     if(qlow<=low and qhigh>=high):
         return tree[pos]
@@ -34,7 +46,12 @@ def query(qlow,qhigh,low,high,pos):
 
 
 ##lazy propagation on the segment tree
-
+    ##startrange -> 'l_r' (starting index update)
+    ##endrange -> 'r_r' (endinng index update)
+    ##delta -> (updating factor)
+    ##low -> 0 (starting index array)
+    ##high -> size-1 (last indes of the array)
+    ##pos -> 0 (initial starting insed)
 def lazy_p(startrange,endrange,delta,low,high,pos):
     if(low > high):
         return
@@ -62,6 +79,11 @@ def lazy_p(startrange,endrange,delta,low,high,pos):
 
 
 ##lazy propagation query
+    ##qlow -> 'l' (starting query index)
+    ##qhigh -> 'r' (endinng query index)
+    ##low -> 0 (starting index array)
+    ##high -> size-1 (last indes of the array)
+    ##pos -> 0 (initial starting insed)
 def query_p(qlow,qhigh,low,high,pos):
     if(low>high):
         ##return something that wont count
