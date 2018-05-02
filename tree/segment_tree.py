@@ -13,7 +13,7 @@ lazy=[0]*size
 ##construction of the segment tree
     ##low -> 0 (starting index array)
     ##high -> size-1 (last indes of the array)
-    ##pos -> 0 (initial starting insed)
+    ##pos -> 0 (initial starting index)
 def construct(low,high,pos):
     if(low==high):
         ## the base node
