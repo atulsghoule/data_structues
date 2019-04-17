@@ -9,6 +9,7 @@ This repositorie contains efficient implementation of various data structures,mo
 - Queue
 - Circular queue
 - Binary search tree
+- AVL Tree
 - Fenwick tree
 - Heaps
 - Priority Queue
