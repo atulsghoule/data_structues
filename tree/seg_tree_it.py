@@ -31,8 +31,6 @@ def query(l,r,size):
 array = [1,2,3,4,5,6]
 tree = [0]*(len(array)*3)
 build(len(array))
-#print query(0,len(array),len(array))
-#update(1,5,len(array))
-#print query(0,len(array),len(array))
-for i in tree:
-    print i
+print query(0,len(array),len(array))
+update(1,5,len(array))
+print query(0,len(array),len(array))
